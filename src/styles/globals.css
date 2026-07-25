@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts Import (fallback if index.html link fails) ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 220 30% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+    --primary: 220 62% 13%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 20% 97%;
+    --secondary-foreground: 220 30% 15%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 38 55% 46%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 86%;
+    --input: 220 20% 86%;
+    --ring: 38 55% 46%;
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 64px;
+    --navbar-height: 56px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-strong;
+  }
+
+  /* Focus */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-gold/20 text-navy;
+  }
+}
+
+@layer components {
+  /* ── Shimmer skeleton ── */
+  .skeleton {
+    @apply bg-gradient-to-r from-border via-muted to-border bg-[length:200%_100%] animate-shimmer rounded;
+  }
+
+  /* ── Card base ── */
+  .card-base {
+    @apply bg-surface border border-border rounded-xl shadow-sm;
+  }
+
+  /* ── Nav item ── */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium
+           text-text-secondary transition-all duration-150 cursor-pointer select-none
+           hover:bg-navy/5 hover:text-text-primary;
+  }
+  .nav-item.active {
+    @apply bg-navy text-white hover:bg-navy-hover;
+  }
+  .nav-item.active svg {
+    @apply text-gold-light;
+  }
+
+  /* ── Stat card ── */
+  .stat-card {
+    @apply card-base p-5 flex flex-col gap-3;
+  }
+
+  /* ── Section header ── */
+  .section-header {
+    @apply flex items-center justify-between mb-6;
+  }
+
+  /* ── Data table row ── */
+  .table-row-hover {
+    @apply transition-colors hover:bg-navy/[0.03] cursor-pointer;
+  }
+
+  /* ── Gold gradient text ── */
+  .text-gold-gradient {
+    @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
+  }
+
+  /* ── Page fade in ── */
+  .page-enter {
+    @apply animate-fade-in;
+  }
+}
+
+@layer utilities {
+  /* Sidebar transition */
+  .sidebar-transition {
+    transition: width 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Glass card */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-border;
+  }
+}
